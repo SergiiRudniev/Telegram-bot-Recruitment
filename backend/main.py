@@ -26,19 +26,18 @@ submissions = defaultdict(list)
 class FormData(BaseModel):
     name: str
     telegram_nick: str
-    referrer_nick: Optional[str] = None  # Необязательное поле
+    referrer_nick: Optional[str] = None
     dob: date
     phone: str
-    email: EmailStr
 
 
 @app.post("/submit")
 async def submit_form(data: FormData):
     today = date.today()
-    if len([d for d in submissions[data.email] if d == today]) >= 2:
+    if len([d for d in submissions[data.phone] if d == today]) >= 2:
         raise HTTPException(status_code=429, detail="Вы можете отправлять форму не более 2 раз в день.")
 
-    submissions[data.email].append(today)
+    submissions[data.phone].append(today)
 
     message = MessageSchema(
         subject="Новая анкета",
@@ -49,7 +48,6 @@ async def submit_form(data: FormData):
             f"Ник пригласившего: {data.referrer_nick or 'Не указан'}\n"
             f"Дата рождения: {data.dob}\n"
             f"Телефон: {data.phone}\n"
-            f"Эл. почта: {data.email}"
         ),
         subtype="plain"
     )
