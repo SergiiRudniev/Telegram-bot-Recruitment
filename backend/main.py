@@ -29,6 +29,7 @@ class FormData(BaseModel):
     referrer_nick: Optional[str] = None
     dob: date
     phone: str
+    interview_time: str
 
 
 @app.post("/submit")
@@ -48,6 +49,7 @@ async def submit_form(data: FormData):
             f"Ник пригласившего: {data.referrer_nick or 'Не указан'}\n"
             f"Дата рождения: {data.dob}\n"
             f"Телефон: {data.phone}\n"
+            f"время собеседования: {data.interview_time.replace('T', ' | ')}"
         ),
         subtype="plain"
     )
