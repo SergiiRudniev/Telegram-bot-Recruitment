@@ -14,9 +14,10 @@ def form():
         data = {
             'name': request.form['name'],
             'telegram_nick': request.form['telegram_nick'],
-            'referrer_nick': request.form.get('referrer_nick'),  # Необязательное поле
-            'dob': request.form['dob'],  # Формат 'YYYY-MM-DD'
-            'phone': request.form['phone']
+            'referrer_nick': request.form.get('referrer_nick'),
+            'dob': request.form['dob'],
+            'phone': request.form['phone'],
+            'interview_time': request.form['interview_time']
         }
 
         try:

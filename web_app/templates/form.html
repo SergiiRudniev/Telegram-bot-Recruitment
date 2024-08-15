@@ -47,6 +47,11 @@
                                 <label for="phone" class="form-label">Номер телефона:</label>
                                 <input type="tel" id="phone" name="phone" class="form-control" required>
                             </div>
+                            <!-- Новое поле для выбора времени собеседования -->
+                            <div class="mb-3">
+                                <label for="interview_time" class="form-label">Выберите время собеседования:</label>
+                                <input type="datetime-local" id="interview_time" name="interview_time" class="form-control" placeholder="с 8:00 до 17:00" onfocus="this.placeholder = ''" onblur="this.placeholder = 'с 8:00 до 17:00'" required>
+                            </div>
                             <button type="submit" class="btn btn-primary w-100">Отправить</button>
                         </form>
                     </div>
