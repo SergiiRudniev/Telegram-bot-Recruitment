@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  telegram_bot:
+    build: ./telegram_bot
+    environment:
+      - TELEGRAM_TOKEN=
+      - WEB_APP_URL=
+
+  web_app:
+    build: ./web_app
+    ports:
+      - "5000:5000"
+
+  backend:
+    build: ./backend
+    environment:
+      - MAIL_USERNAME=
+      - MAIL_PASSWORD=
+      - MAIL_FROM=
+      - RECIPIENT_EMAIL=
+    ports:
+      - "8000:8000"
